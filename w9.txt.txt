@@ -1,0 +1,71 @@
+/*
+การสร้าง/แยก Branch
+
+git branch <branch-name>             //การสร้าง Branch 
+git branch cat                       //สร้าง Branch ชื่อ cat
+
+git branch                           //ตรวจสอบว่ามี Branch ใดบ้าง
+git checkout cat                     //เปลี่ยน Branch ไปที่ cat ด้วยคำสั่ง
+
+//การ Merge Branch แบบไม่มี Conflict
+เพิ่มไฟล์ ใน branch cat และ branch master
+
+git checkout cat  //ไปที่ branch cat เพิ่มไพล์แล้ว commit
+git add cat.txt
+git commit -m "Add cat.txt in branch cat"
+
+git checkout master     //ไปที่ branch master เพิ่มไพล์แล้ว commit
+git add master1.txt
+git commit -m "Add master1.txt in branch master"
+
+//merge โดยให้ งานใน cat ไปรวมกันใน master
+เปลี่ยนไปที่ Branch ปลายทางก่อน (master)
+git checkout master
+รวม Branch (merge) cat ให้ไปอยู่ใน master
+git merge cat
+
+//เมื่อไม่มี conflict จะทำให้ git สร้าง commit ของการ merge นั้นไปเลย
+
+//การ Pull แบบไม่มี Conflict
+clone git repository มาไว้อีกเครื่องหนึ่ง หรือ directory ใหม่ เช่น git102
+    cd ..
+    git clone <git-url> git102   
+    cd git102
+เพิ่มไฟล์ ใน directory ใหม่ (git102) แล้ว push ไปที่ github
+    git add new-1.txt
+    git commit -m "add new-1.txt by user2"
+    git push origin master
+กลับมาที่เครื่องเก่า หรือ directory เก่า แล้ว pull การเปลี่ยนแปลงลงมาที่ local repository
+	cd ..
+	cd git101
+	ls -l						(ไม่มีไฟล์ new-1.txt)
+	git pull origin master		(ดึงการเปลี่ยนแปลงจาก branch master)
+	ls -l						(มีไฟล์ new-1.txt)
+
+//สร้าง Branch cat2 และสลับไป Branch นั้นเลย ด้วยคำสั่ง
+git checkout -b cat2
+ให้แก้ไฟล์ b.txt ใน branch feature2 และ master ในบรรทัดเดียวกัน ให้มีข้อความต่างกัน
+git checkout feature2
+แก้ไขไฟล์ b.txt บรรทัดแรก ให้มีข้อความหนึ่ง
+เพิ่มไพล์
+commit และ log adog
+
+git checkout master
+แก้ไขไฟล์ b.txt บรรทัดแรก ให้มีข้อความสองที่แตกต่างจากข้อความหนึ่ง
+เพิ่มไพล์
+commit และ log adog
+
+merge branch cat2 เข้าไปใน branch master (ไม่ต้อง push ก็ merge ได้)
+git checkout master
+git merge cat2
+
+หลังจากแก้ไข conflict เสร็จแล้ว ให้ commit การ merge นั้น
+เพิ่มไพล์
+commit และ log adog
+
+push ขึ้น  github
+git push origin master
+log adog
+
+
+*/
